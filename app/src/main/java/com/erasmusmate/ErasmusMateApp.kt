@@ -27,19 +27,15 @@ class ErasmusMateApp : Application(), Configuration.Provider {
         database = AppDatabase.create(this)
         settings = SettingsDataStore(this)
         repositoryProvider = RepositoryProvider(database, settings)
-        WorkManager.initialize(
-            this,
-            Configuration.Builder()
-                .setWorkerFactory(
-                    RepositoryProviderWorkerFactory(repositoryProvider)
-                )
-                .build()
-        )
         scheduleBackgroundWork()
     }
 
     override val workManagerConfiguration: Configuration
-        get() = Configuration.Builder().build()
+        get() = Configuration.Builder()
+            .setWorkerFactory(
+                RepositoryProviderWorkerFactory(repositoryProvider)
+            )
+            .build()
 
     private fun scheduleBackgroundWork() {
         val deadlineRequest = PeriodicWorkRequestBuilder<DeadlineReminderWorker>(1, TimeUnit.DAYS).build()
