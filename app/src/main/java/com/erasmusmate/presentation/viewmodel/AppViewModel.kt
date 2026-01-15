@@ -45,7 +45,7 @@ class AppViewModel(private val repositoryProvider: RepositoryProvider) : ViewMod
             if (result.isFailure) {
                 _error.value = result.exceptionOrNull()?.message
             } else {
-                logAuditEvent.log(result.getOrNull()?.id ?: \"unknown\", \"login_university\")
+                logAuditEvent.log(result.getOrNull()?.id ?: "unknown", "login_university")
             }
         }
     }
@@ -56,7 +56,7 @@ class AppViewModel(private val repositoryProvider: RepositoryProvider) : ViewMod
             if (result.isFailure) {
                 _error.value = result.exceptionOrNull()?.message
             } else {
-                logAuditEvent.log(result.getOrNull()?.id ?: \"unknown\", \"login_social\")
+                logAuditEvent.log(result.getOrNull()?.id ?: "unknown", "login_social")
             }
         }
     }
