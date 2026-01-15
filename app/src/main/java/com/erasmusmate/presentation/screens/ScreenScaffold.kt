@@ -9,6 +9,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.erasmusmate.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenScaffold(
     title: String,

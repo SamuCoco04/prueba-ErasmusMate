@@ -7,6 +7,7 @@ import com.erasmusmate.domain.model.*
 import com.erasmusmate.domain.repository.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import java.time.Instant
@@ -219,7 +220,7 @@ class AdminRepositoryImpl(
 }
 
 private suspend fun <T> Flow<T>.collectOnce(): T {
-    return kotlinx.coroutines.flow.first(this)
+    return first()
 }
 
 private fun User.toEntity() = UserEntity(id, name, role.name, trackingCode)
